@@ -3,6 +3,7 @@ var rename = require("gulp-rename");
 var run = require("gulp-run");
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require("gulp-typescript");
+var mocha = require("gulp-mocha");
 
 var tsproj = ts.createProject("tsconfig.json");
 
@@ -20,3 +21,14 @@ gulp.task("default", ["gen-grammar"], function () {
 gulp.task("gen-grammar", function () {
   return run("nearleyc src/parser/Grammar.ne -o src/parser/Grammar.ts").exec()
 });
+
+gulp.task('test', ['default'], () =>
+  gulp.src('test/astSpec.js')
+      .pipe(mocha())
+      .once('error', () => {
+          process.exit(1);
+      })
+      .once('end', () => {
+          process.exit();
+      })
+);

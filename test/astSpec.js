@@ -1,4 +1,4 @@
-const main = require('../bin/main.js');
+const main = require('../bin/test');
 const assert = require('chai').assert;
 
 describe('Basic Declarations', function(){

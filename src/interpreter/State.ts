@@ -31,6 +31,10 @@ export class State {
     this.files.add(path);
   }
 
+  setFunction(id,value){
+    this.jsfun.set(id,value);
+  }
+
   clone(): State{
     let clone = new State();
     this.vars.forEach(function(v,k){clone.set(k,v);});
